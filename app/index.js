@@ -83,7 +83,11 @@ module.exports = yeoman.generators.Base.extend({
   plugin_add_platforms: function() {
     this.composeWith('cordova-plugin-devbed:_plugin_platform', {options: this.props});
   },
-  
+
+  plugin_add_tests: function() {
+    this.composeWith('cordova-plugin-devbed:_plugin_tests', {options: this.props});
+  },
+
   //==========================================================================
   // Create dev bed
   //--------------------------------------------------------------------------
@@ -101,14 +105,18 @@ module.exports = yeoman.generators.Base.extend({
   // Add plugin
   //
   cordova_add_plugin: function() {
-    this.composeWith('cordova-plugin-devbed:_testbed_add_plugin', {options: this.props});
+//    this.composeWith('cordova-plugin-devbed:_testbed_add_plugin', {options: this.props});
   },
 
+  cordova_add_test_plugin: function() {
+    this.composeWith('cordova-plugin-devbed:_testbed_add_test_plugin', {options: this.props});
+  },
+  
   //--------------------------------------------------------------------------
   // Add plugin test framework (org.apache.cordova.test-framework)
   //
   cordova_add_testFramework: function() {
-    this.composeWith('cordova-plugin-devbed:_testbed_testframework', {options: this.props});    
+//    this.composeWith('cordova-plugin-devbed:_testbed_testframework', {options: this.props});    
   },
 
 });
