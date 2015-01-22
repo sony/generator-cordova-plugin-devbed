@@ -1,6 +1,8 @@
 'use strict';
 var assert = require('assert');
 var yeoman = require('yeoman-generator');
+var fs = require('fs');
+var xml2js = require('xml2js');
 var cordova_lib = require('cordova-lib');
 var cordova = cordova_lib.cordova;
 
@@ -19,7 +21,7 @@ module.exports = yeoman.generators.Base.extend({
   //--------------------------------------------------------------------------
   /// CWD changed to TestBed directory
   ///
-  cordova_changedir: function() {
+  changedir: function() {
     assert(this.props.testbedName,  'testbedName is required');
     process.chdir(this.props.testbedName);
   },
@@ -34,7 +36,23 @@ module.exports = yeoman.generators.Base.extend({
     cordova.plugin('add', this.props.TEST_FRAMEWORK);
   },
 
-  testbed_back_to_root: function() {
+  modify_config_xml: function() {
+    var done = this.async();
+    var parser = new xml2js.Parser();
+    var builder = new xml2js.Builder();
+
+    var data = fs.readFileSync('config.xml');
+    parser.parseString(data, function(err, result) {
+      
+      result.widget.content[0].$.src = "cdvtests/index.html";
+      var xml = builder.buildObject(result);
+      fs.writeFileSync('config.xml', xml);
+      
+      done();
+    });
+  },
+  
+  back_to_root: function() {
     process.chdir('..');
   }
   

@@ -26,7 +26,8 @@
     "yeoman-generator": "^0.18.0",
     "chalk": "^0.5.0",
     "yosay": "^0.3.0",
-    "cordova-lib": "^4.1.2"
+    "cordova-lib": "^4.1.2",
+    "xml2js": "^0.4.4"
   },
   "devDependencies": {
     "mocha": "*"
