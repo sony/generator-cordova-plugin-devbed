@@ -21,12 +21,7 @@ module.exports = yeoman.generators.Base.extend({
   ///
   cordova_changedir: function() {
     assert(this.props.testbedName,  'testbedName is required');
-    
     process.chdir(this.props.testbedName);
-
-    this.on('end', function(){
-      process.chdir('..');
-    });
   },
   
   //--------------------------------------------------------------------------
@@ -34,7 +29,7 @@ module.exports = yeoman.generators.Base.extend({
   //
   cordova_add_platform: function() {
     assert(this.props.pluginName,  'pluginName is required');    
-    this.log('*** Adding target plugin to plugin test bed ***');
+    this.log('*** Adding target test runner plugin to plugin test bed ***');
 
     var done = this.async();
     var plugins = [this.props.pluginName+'/tests'];
@@ -52,7 +47,10 @@ module.exports = yeoman.generators.Base.extend({
     cordova.plugin('add', '../' + plugins[idx], function() {
       self._add_plugins(idx+1, plugins, done);
     });
-  }
+  },
 
+  testbed_back_to_root: function() {
+    process.chdir('..');
+  }
   
 });

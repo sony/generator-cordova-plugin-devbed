@@ -37,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
     this.template('_plugin.xml', 'tests/plugin.xml', this.props);
     this.template('_tests.js', 'tests/tests.js', this.props);
 
-    done();
+    this.fs.commit(function(){ done(); });
   },
 
   plugin_back_to_root: function() {

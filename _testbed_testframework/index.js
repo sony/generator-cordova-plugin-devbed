@@ -19,16 +19,11 @@ module.exports = yeoman.generators.Base.extend({
   //--------------------------------------------------------------------------
   /// CWD changed to TestBed directory
   ///
-/*
   cordova_changedir: function() {
     assert(this.props.testbedName,  'testbedName is required');
     process.chdir(this.props.testbedName);
-
-    this.on('end', function(){
-      process.chdir('..');
-    });
   },
-*/  
+
   //--------------------------------------------------------------------------
   // Add plugin
   //
@@ -39,4 +34,8 @@ module.exports = yeoman.generators.Base.extend({
     cordova.plugin('add', this.props.TEST_FRAMEWORK);
   },
 
+  testbed_back_to_root: function() {
+    process.chdir('..');
+  }
+  
 });

@@ -30,6 +30,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     // Have Yeoman greet the user.
+
     this.log(yosay(
       'Welcome to the cat\'s pajamas' + chalk.red('CordovaPluginDevbed') + ' generator!'
     ));
@@ -105,7 +106,7 @@ module.exports = yeoman.generators.Base.extend({
   // Add plugin
   //
   cordova_add_plugin: function() {
-//    this.composeWith('cordova-plugin-devbed:_testbed_add_plugin', {options: this.props});
+    this.composeWith('cordova-plugin-devbed:_testbed_add_plugin', {options: this.props});
   },
 
   cordova_add_test_plugin: function() {
@@ -116,7 +117,7 @@ module.exports = yeoman.generators.Base.extend({
   // Add plugin test framework (org.apache.cordova.test-framework)
   //
   cordova_add_testFramework: function() {
-//    this.composeWith('cordova-plugin-devbed:_testbed_testframework', {options: this.props});    
+    this.composeWith('cordova-plugin-devbed:_testbed_testframework', {options: this.props});    
   },
 
 });

@@ -21,12 +21,7 @@ module.exports = yeoman.generators.Base.extend({
   ///
   cordova_changedir: function() {
     assert(this.props.testbedName,  'testbedName is required');
-    
     process.chdir(this.props.testbedName);
-
-    this.on('end', function(){
-      process.chdir('..');
-    });
   },
   
   //--------------------------------------------------------------------------
@@ -52,7 +47,10 @@ module.exports = yeoman.generators.Base.extend({
     cordova.plugin('add', '../' + plugins[idx], function() {
       self._add_plugins(idx+1, plugins, done);
     });
-  }
+  },
 
+  testbed_back_to_root: function() {
+    process.chdir('..');
+  }
   
 });
