@@ -2,12 +2,12 @@
 exports.defineAutoTests = function() {
   describe('<%= pluginName %> object existance check', function() {
 
-    it("window.cordova.plugins.<%= pluginName %>", function () {
-      expect(window.cordova.plugins.<%= pluginName %>).toBeDefined();
+    it("<%= pluginID %>", function () {
+      expect( <%= pluginID %>).toBeDefined();
     });
 
-    it("window.cordova.plugins.<%= pluginName %>.coolMethod", function() {
-      expect( window.cordova.plugins.<%= pluginName %>.coolMethod ).toBeDefined();
+    it("<%= pluginID %>.coolMethod", function() {
+      expect( <%= pluginID %>.coolMethod ).toBeDefined();
     });
   });
 
@@ -31,7 +31,7 @@ exports.defineAutoTests = function() {
       spyOn(callbacks, 'win').and.callThrough();
       spyOn(callbacks, 'fail').and.callThrough();
       
-      window.cordova.plugins.<%= pluginName %>.coolMethod("test", callbacks.win, callbacks.fail);
+      <%= pluginID %>.coolMethod("test", callbacks.win, callbacks.fail);
     });
 
     it("to have been called", function() {
