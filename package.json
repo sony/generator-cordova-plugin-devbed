@@ -34,6 +34,6 @@
   },
   "peerDependencies": {
     "yo": ">=1.0.0",
-    "pluginsync": "git://ghe.am.sony.com/Kan-Kinga/pluginsync-cli.git"    
+    "plugindev-cli": "git://ghe.am.sony.com/Kan-Kinga/pluginsync-cli.git"    
   }
 }
