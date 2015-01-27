@@ -30,10 +30,10 @@
     "xml2js": "^0.4.4"
   },
   "devDependencies": {
-    "mocha": "*",
-    "pluginsync": "git://ghe.am.sony.com/Kan-Kinga/pluginsync-cli.git"
+    "mocha": "*"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0"
+    "yo": ">=1.0.0",
+    "pluginsync": "git://ghe.am.sony.com/Kan-Kinga/pluginsync-cli.git"    
   }
 }
