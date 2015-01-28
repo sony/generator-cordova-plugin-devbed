@@ -1,45 +1,57 @@
-# generator-cordova-plugin-devbed [![Build Status](https://secure.travis-ci.org/ahirun0426/generator-cordova-plugin-devbed.png?branch=master)](https://travis-ci.org/ahirun0426/generator-cordova-plugin-devbed)
+# generator-cordova-plugin-devbed
 
-> [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) cordova(http://cordova.apache.org) plugin generator
 
 
 ## Getting Started
 
-### What is Yeoman?
+### Cordova plugin devbed とは？
 
-Trick question. It's not a thing. It's this guy:
+ Cordova plugin 及び、そのテストを行うためのアプリケーションの scaffolding するツール。
 
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```bash
-npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
+### Getting started
 
 To install generator-cordova-plugin-devbed from npm, run:
 
 ```bash
-npm install -g generator-cordova-plugin-devbed
+npm install -g git://ghe.am.sony.com/sandbox/generator-cordova-plugin-devbed
 ```
 
-Finally, initiate the generator:
+Next, initiate the generator:
 
 ```bash
 yo cordova-plugin-devbed
 ```
 
-### Getting To Know Yeoman
+### Getting To Know This Generator
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+* test runner について
+ cordova-plugin-test-framework (https://github.com/apache/cordova-plugin-test-framework) を採用
+ Jasmine-2.0.0 を実行している
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+* generator の作業内容
+1. plugin の生成
+ plugman により、Cordova plugin のひな形作成
+ ひな形のうち、plugin.xml の一部を修正。
+ <plugin><js-module><crobbers @target> の値を cordova.plugins.<plugin名> から <plugin ID> に変更
+ ⇒ JavaScript からアクセスする際の object が plugin ID で示す位置 (ex: org.cool.plugin) に置かれるようになる
+1. plugin に platform を追加
+ plugman に対して platform (ex: android/ios) を追加
+1. test plugin を追加
+ plugin に対して cordova-plugin-test-framework 用の plugin コードを追加する
+1. テスト用アプリケーション生成
+ cordova create 相当の作業により、アプリケーションひな形を生成
+1. アプリに platform を追加
+ cordova platform add 相当の作業
+1. アプリに plugin を追加
+ 先に作成した plugin をアプリに追加
+ cordova plugin add 相当
+1. アプリにテスト plugin を追加
+ cordova-plugin-test-framework で参照するテスト plugin をアプリに追加
+1. cordova-plugin-test-framework を追加
+ cordova plugin add http://git-wip-us.apache.org/repos/asf/cordova-plugin-test-framework.git 相当
+ また、config.xml の一部を修正
+ <widget><content @src> を index.html から cdvtests/index.html に変更
 
 
 ## License
