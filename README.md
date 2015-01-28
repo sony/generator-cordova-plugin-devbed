@@ -1,13 +1,13 @@
 # generator-cordova-plugin-devbed
 
-> [Yeoman](http://yeoman.io) cordova(http://cordova.apache.org) plugin generator
+> [Yeoman](http://yeoman.io) [cordova](http://cordova.apache.org) plugin generator
 
 
 ## Getting Started
 
-### Cordova plugin devbed ‚Æ‚ÍH
+### Cordova plugin devbed ã¨ã¯ï¼Ÿ
 
- Cordova plugin ‹y‚ÑA‚»‚ÌƒeƒXƒg‚ğs‚¤‚½‚ß‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì scaffolding ‚·‚éƒc[ƒ‹B
+ Cordova plugin åŠã³ã€ãã®ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ãŸã‚ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã® scaffolding ã™ã‚‹ãƒ„ãƒ¼ãƒ«ã€‚
 
 ### Getting started
 
@@ -25,33 +25,33 @@ yo cordova-plugin-devbed
 
 ### Getting To Know This Generator
 
-* test runner ‚É‚Â‚¢‚Ä
-  cordova-plugin-test-framework (https://github.com/apache/cordova-plugin-test-framework) ‚ğÌ—p
-  Jasmine-2.0.0 ‚ğÀs‚µ‚Ä‚¢‚é
+- test runner ã«ã¤ã„ã¦
+  cordova-plugin-test-framework (https://github.com/apache/cordova-plugin-test-framework) ã‚’æ¡ç”¨
+  Jasmine-2.0.0 ã‚’å®Ÿè¡Œã—ã¦ã„ã‚‹
 
-* generator ‚Ìì‹Æ“à—e
-1. plugin ‚Ì¶¬
-  plugman ‚É‚æ‚èACordova plugin ‚Ì‚Ğ‚ÈŒ`ì¬
-  ‚Ğ‚ÈŒ`‚Ì‚¤‚¿Aplugin.xml ‚Ìˆê•”‚ğC³B
-  <plugin><js-module><crobbers @target> ‚Ì’l‚ğ cordova.plugins.<plugin–¼> ‚©‚ç <plugin ID> ‚É•ÏX
-  Ë JavaScript ‚©‚çƒAƒNƒZƒX‚·‚éÛ‚Ì object ‚ª plugin ID ‚Å¦‚·ˆÊ’u (ex: org.cool.plugin) ‚É’u‚©‚ê‚é‚æ‚¤‚É‚È‚é
-1. plugin ‚É platform ‚ğ’Ç‰Á
-  plugman ‚É‘Î‚µ‚Ä platform (ex: android/ios) ‚ğ’Ç‰Á
-1. test plugin ‚ğ’Ç‰Á
-  plugin ‚É‘Î‚µ‚Ä cordova-plugin-test-framework —p‚Ì plugin ƒR[ƒh‚ğ’Ç‰Á‚·‚é
-1. ƒeƒXƒg—pƒAƒvƒŠƒP[ƒVƒ‡ƒ“¶¬
-  cordova create ‘Š“–‚Ìì‹Æ‚É‚æ‚èAƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ğ‚ÈŒ`‚ğ¶¬
-1. ƒAƒvƒŠ‚É platform ‚ğ’Ç‰Á
-  cordova platform add ‘Š“–‚Ìì‹Æ
-1. ƒAƒvƒŠ‚É plugin ‚ğ’Ç‰Á
-  æ‚Éì¬‚µ‚½ plugin ‚ğƒAƒvƒŠ‚É’Ç‰Á
-  cordova plugin add ‘Š“–
-1. ƒAƒvƒŠ‚ÉƒeƒXƒg plugin ‚ğ’Ç‰Á
-  cordova-plugin-test-framework ‚ÅQÆ‚·‚éƒeƒXƒg plugin ‚ğƒAƒvƒŠ‚É’Ç‰Á
-1. cordova-plugin-test-framework ‚ğ’Ç‰Á
-  cordova plugin add http://git-wip-us.apache.org/repos/asf/cordova-plugin-test-framework.git ‘Š“–
-  ‚Ü‚½Aconfig.xml ‚Ìˆê•”‚ğC³
-  <widget><content @src> ‚ğ index.html ‚©‚ç cdvtests/index.html ‚É•ÏX
+- generator ã®ä½œæ¥­å†…å®¹
+1. plugin ã®ç”Ÿæˆ
+  plugman ã«ã‚ˆã‚Šã€Cordova plugin ã®ã²ãªå½¢ä½œæˆ
+  ã²ãªå½¢ã®ã†ã¡ã€plugin.xml ã®ä¸€éƒ¨ã‚’ä¿®æ­£ã€‚
+  <plugin><js-module><crobbers @target> ã®å€¤ã‚’ cordova.plugins.<pluginå> ã‹ã‚‰ <plugin ID> ã«å¤‰æ›´
+  â‡’ JavaScript ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹éš›ã® object ãŒ plugin ID ã§ç¤ºã™ä½ç½® (ex: org.cool.plugin) ã«ç½®ã‹ã‚Œã‚‹ã‚ˆã†ã«ãªã‚‹
+1. plugin ã« platform ã‚’è¿½åŠ 
+  plugman ã«å¯¾ã—ã¦ platform (ex: android/ios) ã‚’è¿½åŠ 
+1. test plugin ã‚’è¿½åŠ 
+  plugin ã«å¯¾ã—ã¦ cordova-plugin-test-framework ç”¨ã® plugin ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹
+1. ãƒ†ã‚¹ãƒˆç”¨ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ç”Ÿæˆ
+  cordova create ç›¸å½“ã®ä½œæ¥­ã«ã‚ˆã‚Šã€ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã²ãªå½¢ã‚’ç”Ÿæˆ
+1. ã‚¢ãƒ—ãƒªã« platform ã‚’è¿½åŠ 
+  cordova platform add ç›¸å½“ã®ä½œæ¥­
+1. ã‚¢ãƒ—ãƒªã« plugin ã‚’è¿½åŠ 
+  å…ˆã«ä½œæˆã—ãŸ plugin ã‚’ã‚¢ãƒ—ãƒªã«è¿½åŠ 
+  cordova plugin add ç›¸å½“
+1. ã‚¢ãƒ—ãƒªã«ãƒ†ã‚¹ãƒˆ plugin ã‚’è¿½åŠ 
+  cordova-plugin-test-framework ã§å‚ç…§ã™ã‚‹ãƒ†ã‚¹ãƒˆ plugin ã‚’ã‚¢ãƒ—ãƒªã«è¿½åŠ 
+1. cordova-plugin-test-framework ã‚’è¿½åŠ 
+  cordova plugin add http://git-wip-us.apache.org/repos/asf/cordova-plugin-test-framework.git ç›¸å½“
+  ã¾ãŸã€config.xml ã®ä¸€éƒ¨ã‚’ä¿®æ­£
+  <widget><content @src> ã‚’ index.html ã‹ã‚‰ cdvtests/index.html ã«å¤‰æ›´
 
 
 ## License
