@@ -4,7 +4,7 @@
   "description": "Yeoman generator for Cordova plugin, it also provides plugin testbed",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "ahirun0426/generator-cordova-plugin-devbed",
+  "repository": "cdp-jp/generator-cordova-plugin-devbed",
   "author": {
     "name": "SEKI Yasuharu",
     "email": "Yasuharu.Seki@jp.sony.com",

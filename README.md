@@ -14,7 +14,7 @@
 To install generator-cordova-plugin-devbed from npm, run:
 
 ```bash
-npm install -g git://ghe.am.sony.com/sandbox/generator-cordova-plugin-devbed
+npm install -g git://ghe.am.sony.com/cdp-jp/generator-cordova-plugin-devbed
 ```
 
 Next, initiate the generator:
