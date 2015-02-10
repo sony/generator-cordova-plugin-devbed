@@ -8,6 +8,7 @@
 ### What's cordova plugin devbed？
 
 Yeoman generator that provides simple cordova plugin and test bed application for the plugin.
+
 [JP] Cordova plugin 及び、そのテストを行うためのアプリケーションの scaffolding するツール。
 
 ### Getting started
