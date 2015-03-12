@@ -16,7 +16,7 @@ Yeoman generator that provides simple cordova plugin and test bed application fo
 To install generator-cordova-plugin-devbed from npm, run:
 
 ```bash
-npm install -g git://ghe.am.sony.com/cdp-jp/generator-cordova-plugin-devbed
+npm install -g git+http://scm.sm.sony.co.jp/gitlab/cdp-jp/generator-cordova-plugin-devbed.git
 ```
 
 Next, initiate the generator:
@@ -88,4 +88,3 @@ yo cordova-plugin-devbed
 ## License
 
 MIT : See: LICENSE and NOTICE file.
-
