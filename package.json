@@ -35,7 +35,6 @@
     "mocha": "*"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0",
-    "plugindev-cli": "git://ghe.am.sony.com/Kan-Kinga/pluginsync-cli.git"    
+    "yo": ">=1.0.0" 
   }
 }
