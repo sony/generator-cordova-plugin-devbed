@@ -17,7 +17,9 @@
     "test": "mocha"
   },
   "files": [
-    "app"
+    "app", "_plugin", "_plugin_platform", "_plugin_tests",
+    "_testbed", "_testbed_add_plugin", "_testbed_add_test_plugin",
+    "_testbed_platform", "_testbed_testframework"
   ],
   "keywords": [
     "yeoman-generator",
