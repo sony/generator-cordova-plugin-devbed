@@ -84,6 +84,13 @@ yo cordova-plugin-devbed
     - config.xml の一部を修正
       - <widget><content @src> を index.html から cdvtests/index.html に変更
 
+## Contribution
+We're welcome your contribution to our project.
+- If you find a bug or mistake, please submit a ticket to the issue
+ - Of cause publishing Pull Request is welcome
+- If you want to add or modify the feature, please submit issue
+ - Publishing Pull Request without discussing the feature change on the issue would be ignored.
+ - Please explain the aim of the new feature on the issue and let us discuss the rough architecture to realize the feature.
 
 ## License
 
