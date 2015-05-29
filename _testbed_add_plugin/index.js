@@ -46,7 +46,7 @@ module.exports = yeoman.generators.Base.extend({
     }
     
     var self = this;
-    cordova.plugin('add', '../' + plugins[idx], function() {
+    cordova.plugin('add', plugins[idx], function() {
       self._add_plugins(idx+1, plugins, done);
     });
   },
