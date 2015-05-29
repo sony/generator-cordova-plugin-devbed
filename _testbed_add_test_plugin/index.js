@@ -51,6 +51,11 @@ module.exports = yeoman.generators.Base.extend({
 
   testbed_back_to_root: function() {
     process.chdir('..');
-  }
+  },
+   
+  // finalize this generator
+  finalize: function() {
+    if( this.props.done ){ this.props.done(); }  
+  },
   
 });

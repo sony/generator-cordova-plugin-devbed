@@ -63,6 +63,11 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
+  // finalize this generator
+  finalize: function() {
+    if( this.props.done ){ this.props.done(); }  
+  },
+
   // replace <plugin><js-module><clobbers @target> value
   _replace_clobbers: function( obj, pluginName, pluginID ){
 

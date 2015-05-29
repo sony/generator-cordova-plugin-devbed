@@ -25,6 +25,15 @@ Next, initiate the generator:
 yo cordova-plugin-devbed
 ```
 
+- Precondition
+ - You need to install Android SDK if you want to choice Android as a target
+ - You should run the generator on Mac OS if you want to choice iOS as a target
+ 
+- [2015.5.29] Cordova does not work behind http proxy
+ - Now the generator does not work good with node.js 0.12
+ - Please use it with node.js 0.10.x
+ - Details: https://issues.apache.org/jira/browse/CB-8662
+
 ### Getting To Know This Generator
 
 - test runner

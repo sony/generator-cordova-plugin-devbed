@@ -1,5 +1,6 @@
 'use strict';
 var assert = require('assert');
+var Q = require('q');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -71,53 +72,69 @@ module.exports = yeoman.generators.Base.extend({
       done();
     }.bind(this));
   },
-  
+   
   //==========================================================================
-  // Create plugin
-  //--------------------------------------------------------------------------
-  // Run plugman: create plugin
+  // Run the generator
   //
-  plugin_create: function() {
-    this.composeWith('cordova-plugin-devbed:_plugin', {options: this.props});
-  },
+  runGenerator: function() { 
+    var self = this;
+    
+    //------------------------------------------------------------------------
+    // Run plugman: create plugin
+    //
+    Q.fcall( function() {
+      return self._waitForComposeWith( 'cordova-plugin-devbed:_plugin',          {options: self.props});
+    }).then( function() {
+      return self._waitForComposeWith( 'cordova-plugin-devbed:_plugin_platform', {options: self.props});
+    }).then( function() {
+      return self._waitForComposeWith( 'cordova-plugin-devbed:_plugin_tests',    {options: self.props});
+    })
 
-  plugin_add_platforms: function() {
-    this.composeWith('cordova-plugin-devbed:_plugin_platform', {options: this.props});
-  },
+    //------------------------------------------------------------------------
+    // Create the simple app with cordova command
+    //
+    .then( function() {
+      return self._waitForComposeWith('cordova-plugin-devbed:_testbed',           {options: self.props});
+    }).then( function() {
+      return self._waitForComposeWith('cordova-plugin-devbed:_testbed_platform',  {options: self.props});
+    })
 
-  plugin_add_tests: function() {
-    this.composeWith('cordova-plugin-devbed:_plugin_tests', {options: this.props});
-  },
-
-  //==========================================================================
-  // Create dev bed
-  //--------------------------------------------------------------------------
-  // Create the simple app with cordova command
-  //
-  cordova_create: function() {
-    this.composeWith('cordova-plugin-devbed:_testbed', {options: this.props});
-  },
-
-  cordova_add_platform: function() {
-    this.composeWith('cordova-plugin-devbed:_testbed_platform', {options: this.props});
-  },
-
-  //--------------------------------------------------------------------------
-  // Add plugin
-  //
-  cordova_add_plugin: function() {
-    this.composeWith('cordova-plugin-devbed:_testbed_add_plugin', {options: this.props});
-  },
-
-  cordova_add_test_plugin: function() {
-    this.composeWith('cordova-plugin-devbed:_testbed_add_test_plugin', {options: this.props});
-  },
+    //------------------------------------------------------------------------
+    // Add plugin
+    //
+    .then( function() {
+      return self._waitForComposeWith('cordova-plugin-devbed:_testbed_add_plugin',        {options: self.props});
+    }).then( function() {
+      return self._waitForComposeWith('cordova-plugin-devbed:_testbed_add_test_plugin', 	{options: self.props});
+    })
   
-  //--------------------------------------------------------------------------
-  // Add plugin test framework (org.apache.cordova.test-framework)
+    //------------------------------------------------------------------------
+    // Add plugin test framework (org.apache.cordova.test-framework)
+    //
+    .then( function() {
+      return self._waitForComposeWith('cordova-plugin-devbed:_testbed_testframework',   {options: self.props});
+    });    
+  },
+
+  //===========================================================================
+  // Utility functions for this generator
+  //===========================================================================
+  //---------------------------------------------------------------------------
+  // Deferred object wrapper for composeWith
   //
-  cordova_add_testFramework: function() {
-    this.composeWith('cordova-plugin-devbed:_testbed_testframework', {options: this.props});    
+  _waitForComposeWith: function( namespace, opt, settings ){
+
+    var df = Q.defer();
+    var done = function () {
+      df.resolve();
+    };
+
+    opt.options = opt.options || {};
+    opt.options.done = done;
+
+    this.composeWith(namespace, opt, settings);
+
+    return df.promise;
   },
 
 });

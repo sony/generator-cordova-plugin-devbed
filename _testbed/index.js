@@ -35,5 +35,10 @@ module.exports = yeoman.generators.Base.extend({
         done();
       } );
   },
+  
+  // finalize this generator
+  finalize: function() {
+    if( this.props.done ){ this.props.done(); }  
+  },
 
 });
