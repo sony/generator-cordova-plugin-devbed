@@ -72,7 +72,7 @@ module.exports = yeoman.generators.Base.extend({
   _replace_clobbers: function( obj, pluginName, pluginID ){
 
     // It's not correct way of parsing/replacing
-    //  Strictly speeing, it should check existence and to know
+    //  Strictly speeking, it should check existence and to know
     // it's object or array 
     obj.plugin['js-module'][0].clobbers[0].$.target = pluginID;
     
