@@ -21,14 +21,15 @@ module.exports = yeoman.generators.Base.extend({
   //
   cordova_create: function() {
     assert(this.props.testbedName,    'testbedName is required');
-    assert(this.props.testbedID,      'testbedID is required');
+    assert(this.props.domainName,     'domainName is required');
 
     var done = this.async();
+    var testbedID = this._makeReverseDomain( this.props.domainName, this.props.testbedName );
     
     // Create TestBed application
     this.log('*** Start creating plugin test bed ***');
     cordova.raw.create( this.props.testbedName, // @dir
-                        this.props.testbedID,   // @id
+                        testbedID,              // @id
                         this.props.testbedName, // @name
                         {} )                    // @cfg
       .done( function(){
@@ -39,6 +40,12 @@ module.exports = yeoman.generators.Base.extend({
   // finalize this generator
   finalize: function() {
     if( this.props.done ){ this.props.done(); }  
+  },
+
+  _makeReverseDomain: function( domain, name ){
+    var aryDomain = domain.split('.');
+    aryDomain.reverse();
+    return aryDomain.join('.') + '.' + name;  	  
   },
 
 });

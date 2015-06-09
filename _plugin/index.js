@@ -41,20 +41,20 @@ module.exports = yeoman.generators.Base.extend({
   // Modify the plugin.xml created by plugman
   modify_plugin_xml: function() {
     assert(this.props.pluginName,    'pluginName is required');
-    assert(this.props.pluginID,      'pluginID is required');
+    assert(this.props.clobbersID,    'clobbersID is required');
 
     var done = this.async();
     var parser = new xml2js.Parser();
     var builder = new xml2js.Builder();
 
     var plugin_name = this.props.pluginName;
-    var plugin_id   = this.props.pluginID;
+    var clobbers_id = this.props.clobbersID;
     var plugin_file = this.props.pluginName + '/plugin.xml';
     
     var data = fs.readFileSync(plugin_file);
     parser.parseString(data, function(err, result) {
       
-      result = this._replace_clobbers( result, plugin_name, plugin_id );
+      result = this._replace_clobbers( result, plugin_name, clobbers_id );
 
       var xml = builder.buildObject(result);
       fs.writeFileSync(plugin_file, xml);
@@ -69,12 +69,12 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   // replace <plugin><js-module><clobbers @target> value
-  _replace_clobbers: function( obj, pluginName, pluginID ){
+  _replace_clobbers: function( obj, pluginName, clobbersID ){
 
     // It's not correct way of parsing/replacing
-    //  Strictly speeing, it should check existence and to know
+    //  Strictly speeking, it should check existence and to know
     // it's object or array 
-    obj.plugin['js-module'][0].clobbers[0].$.target = pluginID;
+    obj.plugin['js-module'][0].clobbers[0].$.target = clobbersID;
     
     return obj;
   },

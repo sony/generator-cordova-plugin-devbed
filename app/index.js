@@ -27,52 +27,143 @@ module.exports = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
   },
 
+  //===========================================================================
+  // Prompting
+  //---------------------------------------------------------------------------
+  // Input project settings
   prompting: function () {
     var done = this.async();
 
     // Have Yeoman greet the user.
-
     this.log(yosay(
-      'Welcome to the cat\'s pajamas' + chalk.red('CordovaPluginDevbed') + ' generator!'
+      'Welcome to the cat\'s pajamas ' + chalk.red('CordovaPluginDevbed') + ' generator!'
     ));
 
-    var prompts = [{
-      type: 'input',
-      name: 'pluginName',
-      message: 'Enter the name of the plugin.',
-      default: 'CoolPlugin'
-    },
-    {
-      type: 'input',
-      name: 'pluginID',
-      message: 'Enter an ID for the plugin. ex: org.bar.foo',
-      default: 'org.cool.plugin'
-    },
-    {
-      type: 'input',
-      name: 'pluginVersion',
-      message: 'Enter a version for the plugin. ex: 0.0.1',
-      default: '0.0.1'
-    },
-    {
-      type: 'checkbox',
-      name: 'pluginPlatforms',
-      message: 'Enter the platforms the plugin supports. ex: android, ios',
-      choices: ['android', 'ios'],
-      default: 'android'
-    }];
-
-    this.prompt(prompts, function (props) {
-      this.props = props;
-
-      this.props.testbedName    = this.props.pluginName + '_TestBed';
-      this.props.testbedID      = this.props.pluginID   + '.testbed';
-      this.props.TEST_FRAMEWORK = TEST_FRAMEWORK;
+    var self = this;
+    self._promptPluginName()
+    .then( function(){ return self._promptDomainName();      } )
+    .then( function(){ return self._promptPluginID();        } )
+    .then( function(){ return self._promptPluginVersion();   } )
+    .then( function(){ return self._promptPluginPlatforms(); } )
+    .then( function(){
+      // remaining adjustments
+      self.props.testbedName    = self.props.pluginName + '_TestBed';
+      self.props.testbedID      = self.props.pluginID   + '-testbed';
+      self.props.TEST_FRAMEWORK = TEST_FRAMEWORK;      
       
       done();
-    }.bind(this));
+    });   
   },
    
+  //--------------------------------------------------------------------------
+  // pluginName
+  //
+  _promptPluginName: function() {
+    var self = this;
+    return Q.Promise( function(resolve, reject, notify ){
+      var prompts = [{
+        type: 'input',
+        name: 'pluginName',
+        message: 'Enter the name of the plugin.',
+        default: 'CoolPlugin'
+      }];
+
+      self.prompt(prompts, function (answers) {
+        self.props.pluginName = answers.pluginName;
+        resolve();
+      });
+    });
+  },
+
+  //--------------------------------------------------------------------------
+  // domainName
+  //
+  _promptDomainName: function() {
+    var self = this;
+    return Q.Promise( function(resolve, reject, notify ){
+      var prompts = [{
+        type: 'input',
+        name: 'domainName',
+        message: 'Enter the domain name of your company/organization.',
+        default: 'cool.org'
+      }];
+
+      self.prompt(prompts, function (answers) {
+        self.props.domainName = answers.domainName;
+        resolve();
+      });
+    });    
+  },
+  
+  //--------------------------------------------------------------------------
+  // pluginID
+  //
+  _promptPluginID: function() {
+    var self = this;
+    return Q.Promise(function (resolve, reject, notify) {
+//    var org = self._pickOrganizationName( self.props.domainName ).toLowerCase();
+      var revDomain = self._createReverseDomain( self.props.domainName ).toLowerCase();
+      var name = self.props.pluginName.toLowerCase();
+      
+      var prompts = [{
+        type: 'input',
+        name: 'pluginID',
+        message: 'Enter an ID for the plugin',
+//      default: (org && name) ? 'cordova-plugin-' + org + '-' + name : 'cordova-plugin-org-coolplugin',
+        default: (revDomain && name) ? revDomain + '.' + name : 'org.cool.coolplugin',
+      }];
+
+      self.prompt(prompts, function (answers) {
+        self.props.pluginID = answers.pluginID;
+        var organization = self._createHyphenizedReverseOrganizationName( self.props.domainName ).toLowerCase();
+        self.props.packageID = 'cordova-plugin-' + organization + '-' + name;
+        self.props.clobbersID = self.props.pluginID + '.' + name;
+        resolve();
+      });
+    });
+  },
+    
+  //--------------------------------------------------------------------------
+  // pluginVersion
+  //
+  _promptPluginVersion: function() {
+    var self = this;
+    return Q.Promise(function (resolve, reject, notify) {
+     var prompts = [{
+       type: 'input',
+       name: 'pluginVersion',
+       message: 'Enter a version for the plugin. ex: 0.0.1',
+       default: '0.0.1'
+      }];
+
+      self.prompt(prompts, function (answers) {
+        self.props.pluginVersion = answers.pluginVersion;
+        resolve();
+      });
+    });
+  },    
+
+  //--------------------------------------------------------------------------
+  // pluginPlatforms
+  //
+  _promptPluginPlatforms: function() {
+    var self = this;
+    return Q.Promise(function (resolve, reject, notify) {
+     var prompts = [{
+       type: 'checkbox',
+       name: 'pluginPlatforms',
+       message: 'Enter the platforms the plugin supports. ex: android, ios',
+       choices: ['android', 'ios'],
+       default: 'android'
+      }];
+
+      self.prompt(prompts, function (answers) {
+        self.props.pluginPlatforms = answers.pluginPlatforms;
+        resolve();
+      });
+    });
+  },  
+
   //==========================================================================
   // Run the generator
   //
@@ -86,6 +177,8 @@ module.exports = yeoman.generators.Base.extend({
       return self._waitForComposeWith( 'cordova-plugin-devbed:_plugin',          {options: self.props});
     }).then( function() {
       return self._waitForComposeWith( 'cordova-plugin-devbed:_plugin_platform', {options: self.props});
+    }).then( function() {
+      return self._waitForComposeWith( 'cordova-plugin-devbed:_plugin_packagejson', {options: self.props});
     }).then( function() {
       return self._waitForComposeWith( 'cordova-plugin-devbed:_plugin_tests',    {options: self.props});
     })
@@ -123,7 +216,6 @@ module.exports = yeoman.generators.Base.extend({
   // Deferred object wrapper for composeWith
   //
   _waitForComposeWith: function( namespace, opt, settings ){
-
     var df = Q.defer();
     var done = function () {
       df.resolve();
@@ -136,5 +228,24 @@ module.exports = yeoman.generators.Base.extend({
 
     return df.promise;
   },
+
+  //---------------------------------------------------------------------------
+  // Pickup the company/organization name from domain name
+  //
+  // cool.org -> cool
+  // dev.plugin.cool.org -> cool-plugin-dev
+  _createHyphenizedReverseOrganizationName: function( domainName ) {
+    if(! domainName ) { return 'org'; }   // Quick return
+    var aryDomain = domainName.split('.')
+    aryDomain.reverse().shift();
+    return aryDomain.join('-');  
+  },
+
+  // cool.org -> org.cool
+  // dev.plugin.cool.org -> org.cool.plugin.dev
+  _createReverseDomain: function( domainName ) {
+    return domainName ? domainName.split('.').reverse().join('.') : 'org';  
+  },
+
 
 });

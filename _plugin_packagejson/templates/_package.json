@@ -1,0 +1,16 @@
+{
+  "name": "<%= pluginName %>",
+  "version": "<%= pluginVersion %>",
+  "description": "",
+  "cordova": {
+    "id": "<%= packageID %>",
+    "platforms": [<% for( var i = 0; i < pluginPlatforms.length; i++ ) { %><% if( 0 < i ){ %>,<% } %>
+      "<%= pluginPlatforms[i] %>" 
+    <% } %>]
+  },
+  "keywords": [
+    "ecosystem:cordova"<% for( var i = 0; i < pluginPlatforms.length; i++ ) { %>,
+    "cordova-<%= pluginPlatforms[i] %>"<% } %>
+  ],
+  "author": ""
+}

@@ -3,11 +3,11 @@ exports.defineAutoTests = function() {
   describe('<%= pluginName %> object existance check', function() {
 
     it("<%= pluginID %>", function () {
-      expect( <%= pluginID %>).toBeDefined();
+      expect( <%= clobbersID %>).toBeDefined();
     });
 
     it("<%= pluginID %>.coolMethod", function() {
-      expect( <%= pluginID %>.coolMethod ).toBeDefined();
+      expect( <%= clobbersID %>.coolMethod ).toBeDefined();
     });
   });
 
@@ -31,7 +31,7 @@ exports.defineAutoTests = function() {
       spyOn(callbacks, 'win').and.callThrough();
       spyOn(callbacks, 'fail').and.callThrough();
       
-      <%= pluginID %>.coolMethod("test", callbacks.win, callbacks.fail);
+      <%= clobbersID %>.coolMethod("test", callbacks.win, callbacks.fail);
     });
 
     it("to have been called", function() {

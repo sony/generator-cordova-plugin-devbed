@@ -9,8 +9,6 @@
 
 Yeoman generator that provides simple cordova plugin and test bed application for the plugin.
 
-[JP] Cordova plugin 及び、そのテストを行うためのアプリケーションの scaffolding するツール。
-
 ### Getting started
 
 To install generator-cordova-plugin-devbed from npm, run:
@@ -38,7 +36,7 @@ yo cordova-plugin-devbed
 
 - test runner
   - The test app includes [cordova-plugin-test-framework](https://github.com/apache/cordova-plugin-test-framework)
-  - They uses Jasmine-2.0.0
+  - They use Jasmine-2.0.0
 
 - How the cordova-plugin-devbed generator works
   1. Create plugin itself
@@ -48,6 +46,8 @@ yo cordova-plugin-devbed
       - As a result, cordova locates the plugin object at the pluginID value (ex: org.cool.plugin)
   1. Add platform into the plugin
     - Kick plugman to add platform (ex: android/ios) into the plugin
+  1. Add package.json to plugin
+    - The generator adds package.json and some recommended files into plugin directory.
   1. Add test plugin
     - The generator adds the test plugin files for cordova-plugin-test-framework
   1. Create test application
@@ -63,7 +63,6 @@ yo cordova-plugin-devbed
     - Modify config.xml
       - Change <widget><content @src> value from 'index.html' to 'cdvtests/index.html'
 
-
 #### JP
 - test runner について
   - [cordova-plugin-test-framework](https://github.com/apache/cordova-plugin-test-framework) を採用
@@ -77,6 +76,8 @@ yo cordova-plugin-devbed
       - JavaScript からアクセスする際の object が plugin ID で示す位置 (ex: org.cool.plugin) に置かれるようになる
   1. plugin に platform を追加
     - plugman に対して platform (ex: android/ios) を追加
+  1. package.json を追加
+  　- plugin に対して package.json 等の recommended ファイルを追加
   1. test plugin を追加
     - plugin に対して cordova-plugin-test-framework 用の plugin コードを追加する
   1. テスト用アプリケーション生成
@@ -92,6 +93,13 @@ yo cordova-plugin-devbed
     - cordova plugin add http://git-wip-us.apache.org/repos/asf/cordova-plugin-test-framework.git 相当
     - config.xml の一部を修正
       - <widget><content @src> を index.html から cdvtests/index.html に変更
+
+## Known problem
+- [2015.6.8] Cordova CLI recommend using 'cordova-plugin-cool-coolplugin' style for plugi ID.
+ - http://cordova.apache.org/announcements/2015/04/21/plugins-release-and-move-to-npm.html
+ - But current plugman does not accept such style when adding android platform
+  - package %pluginID%; in base.java, it causes compile error due to the ID includes minus(-) in it.
+ - Since the generator uses plugman to add platform, I keep the old style id until the problem will be resolved.
 
 ## Contribution
 We're welcome your contribution to our project.
