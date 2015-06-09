@@ -95,11 +95,15 @@ yo cordova-plugin-devbed
       - <widget><content @src> を index.html から cdvtests/index.html に変更
 
 ## Known problem
-- [2015.6.8] Cordova CLI recommend using 'cordova-plugin-cool-coolplugin' style for plugi ID.
+- [2015.6.8] Cordova CLI recommend using 'cordova-plugin-cool-coolplugin' style for plugin ID.
  - http://cordova.apache.org/announcements/2015/04/21/plugins-release-and-move-to-npm.html
  - But current plugman does not accept such style when adding android platform
   - package %pluginID%; in base.java, it causes compile error due to the ID includes minus(-) in it.
  - Since the generator uses plugman to add platform, I keep the old style id until the problem will be resolved.
+
+- [2015.6.9] CSP meta have not been added into Jasmine index.html file
+ - Cordova Android platform recommended to use cordova-plugin-whitelist and adding Content-Security-Policy tag in html file.
+ - But cordova-plugin-test-framework does not have such a index.html file in it.
 
 ## Contribution
 We're welcome your contribution to our project.
