@@ -117,7 +117,6 @@ module.exports = yeoman.generators.Base.extend({
         self.props.pluginID = answers.pluginID;
         var organization = self._createHyphenizedReverseOrganizationName( self.props.domainName ).toLowerCase();
         self.props.packageID = 'cordova-plugin-' + organization + '-' + name;
-        self.props.clobbersID = self.props.pluginID + '.' + name;
         resolve();
       });
     });
