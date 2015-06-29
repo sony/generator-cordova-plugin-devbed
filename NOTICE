@@ -8,3 +8,15 @@ https://github.com/yeoman/generator-generator
 MIT © Pascal Hartig phartig@rdrei.net and other contributors
 
 
+--------------------------------------------------------------------------------
+NOTICES FOR csp-incl.js
+--------------------------------------------------------------------------------
+
+csp-incl.js is copied from cordova-mobile-spec
+https://github.com/apache/cordova-mobile-spec/
+
+Apache Cordova
+Copyright 2012 The Apache Software Foundation
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).

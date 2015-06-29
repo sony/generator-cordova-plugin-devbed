@@ -52,6 +52,13 @@ module.exports = yeoman.generators.Base.extend({
     });
   },
   
+  //--------------------------------------------------------------------------
+  // Copy some setting files
+  //
+  copy_test_framework_config_files: function() {
+    this.copy('csp-incl.js', 'www/csp-incl.js');
+  },
+  
   back_to_root: function() {
     process.chdir('..');
   },
