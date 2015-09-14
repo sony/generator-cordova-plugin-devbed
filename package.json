@@ -1,6 +1,6 @@
 {
   "name": "generator-cordova-plugin-devbed",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Yeoman generator for Cordova plugin, it also provides plugin testbed",
   "license": "MIT",
   "main": "app/index.js",
@@ -33,17 +33,14 @@
     "plugin"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.20.1",
-    "chalk": "^1.0.0",
-    "yosay": "^0.3.0",
-    "cordova-lib": "^5.1.0",
-    "xml2js": "^0.4.8",
+    "yeoman-generator": "^0.20.3",
+    "chalk": "^1.1.1",
+    "yosay": "^1.0.5",
+    "cordova-lib": "^5.3.1",
+    "xml2js": "^0.4.12",
     "q": "^1.4.1"
   },
   "devDependencies": {
     "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0" 
   }
 }
