@@ -4,6 +4,8 @@ var yeoman = require('yeoman-generator');
 var cordova_lib = require('cordova-lib');
 var cordova = cordova_lib.cordova;
 
+var path = require('path');
+
 //============================================================================
 // Yeoman generator implementation
 //
@@ -32,7 +34,7 @@ module.exports = yeoman.generators.Base.extend({
     this.log('*** Adding target test runner plugin to plugin test bed ***');
 
     var done = this.async();
-    var plugins = [this.props.pluginName+'/tests'];
+    var plugins = [path.join(process.cwd(), '..', this.props.pluginName, 'tests')];
     this._add_plugins(0, plugins, done);
   },
 
