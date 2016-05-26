@@ -63,6 +63,13 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
+  // Add 'ZZZ' file to plugin folder
+  // To avoid plugman bug by 'allow recursive folder copy skipping whateve .. was' @ 2016.1.24
+  // The change implicitly ignore last 1 file/folder in plugin folder if the plugin locates side of cordova app folder.
+  workaround_for_plugman: function() {
+    this.template( '_ZZZ.txt', this.props.pluginName + '/ZZZ.txt', this.props);
+  },
+
   // finalize this generator
   finalize: function() {
     if( this.props.done ){ this.props.done(); }  

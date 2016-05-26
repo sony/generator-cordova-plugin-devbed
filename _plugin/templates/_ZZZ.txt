@@ -1,0 +1,3 @@
+This file is just existing for ignoring.
+
+Plugman will not copy last file of the folder in the plugin if the plugin folder locates sibling of cordova app folder.
